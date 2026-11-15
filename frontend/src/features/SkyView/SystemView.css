@@ -1,0 +1,89 @@
+.sv-system { position: relative; width: 100%; height: 100%; min-height: 280px; overflow: hidden; background: var(--sv-bg); color: var(--sv-ink); }
+.sv-system-canvas { position: absolute; inset: 0; }
+.sv-system-frost { background: var(--sv-glass); color: var(--sv-ink); border: 1px solid var(--sv-border); border-radius: 14px; box-shadow: var(--sv-shadow); backdrop-filter: blur(22px) saturate(.45); -webkit-backdrop-filter: blur(22px) saturate(.45); }
+.sv-system-nav { position: absolute; top: 76px; left: 12px; display: flex; gap: 4px; padding: 4px; max-width: calc(100% - 24px); }
+.sv-system button { min-height: 44px; padding: 6px 12px; border: 1px solid var(--sv-border); border-radius: 10px; color: var(--sv-ink); background: var(--sv-input); font: inherit; font-size: 12px; cursor: pointer; }
+.sv-system button[aria-pressed='true'] { background: var(--sv-ink); color: var(--sv-bg); }
+.sv-system button:disabled { opacity: .45; cursor: not-allowed; }
+.sv-system :focus-visible { outline: 2px solid var(--sv-ink); outline-offset: 3px; }
+.sv-system-picker { position: absolute; top: 132px; left: 12px; width: min(290px, calc(100% - 24px)); padding: 16px; box-sizing: border-box; font-size: 12px; max-height: calc(100% - 230px); overflow-y: auto; }
+.sv-system-picker > strong { font-size: 16px; }
+.sv-system-picker label, .sv-system-picker small { display: block; line-height: 1.5; }
+.sv-system-picker select { display: block; width: 100%; margin-top: 6px; padding: 10px; color: var(--sv-ink); background: var(--sv-input); border: 1px solid var(--sv-border); border-radius: 8px; }
+.sv-system-picker .sv-primary { width: 100%; margin: 12px 0; background: var(--sv-ink); color: var(--sv-bg); }
+.sv-system-draft { display: grid; gap: 5px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--sv-border); font-variant-numeric: tabular-nums; }
+.sv-system-draft strong { font-size: 16px; }
+.sv-system-picker small { color: var(--sv-muted); }
+.sv-system-tools { position: absolute; bottom: 92px; right: 12px; width: min(290px, calc(100% - 24px)); font-size: 12px; }
+.sv-system summary { cursor: pointer; min-height: 44px; padding: 12px; box-sizing: border-box; }
+.sv-system-scroll { padding: 0 12px 12px; max-height: min(42dvh, 360px); overflow: auto; overscroll-behavior: contain; }
+.sv-system-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; }
+.sv-system-row label { width: 100%; }
+.sv-system-row select { max-width: 100%; }
+.sv-system p { margin: 9px 0; line-height: 1.5; }
+.sv-system a { color: inherit; text-decoration: underline; }
+.sv-system-provenance { border-top: 1px solid var(--sv-border); margin-top: 12px; color: var(--sv-muted); }
+.sv-system-provenance summary { padding-inline: 0; color: var(--sv-ink); }
+.sv-system-status { position: absolute; left: 12px; bottom: 148px; width: min(340px, calc(100% - 24px)); max-height: 24%; overflow: auto; pointer-events: none; font-size: 11px; }
+.sv-system-status p { padding: 8px 12px; margin: 4px 0 0; }
+
+/* SystemView Planner Picker Banner */
+.sv-system-planner-picker-banner {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  width: min(680px, calc(100% - 24px));
+  box-sizing: border-box;
+}
+.sv-planner-picker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.sv-planner-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #00f0ff;
+  letter-spacing: 0.05em;
+}
+.sv-planner-picker-info p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--sv-muted);
+}
+.sv-planner-picker-info strong {
+  font-size: 13px;
+  color: var(--sv-ink);
+}
+.sv-planner-picker-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sv-planner-picker-actions .sv-primary {
+  background: var(--sv-ink);
+  color: var(--sv-bg);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .sv-system-nav { gap: 2px; }
+  .sv-system-nav button { padding-inline: 10px; }
+  .sv-system-tools { bottom: 86px; }
+  .sv-system-scroll { max-height: 34dvh; }
+  .sv-system-status { bottom: 140px; max-height: 18%; }
+}
+@media (prefers-reduced-transparency: reduce), (prefers-contrast: more) {
+  .sv-system-frost { background: var(--sv-card); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sv-system button { transition: none; }
+}

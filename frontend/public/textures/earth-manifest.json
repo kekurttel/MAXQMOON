@@ -1,0 +1,6 @@
+{
+  "sourceUrl": "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg",
+  "provider": "Three.js example texture",
+  "sha256": "2faa400d1eade3bc44caf6750d1b772bd9bbb6d87362c02bc7c3304e78fa0a9d",
+  "limitations": "Static illustrative Earth map. Not current cloud observations, not a SPICE Earth attitude solution. Original NASA provenance not independently verified."
+}

@@ -1,0 +1,169 @@
+.sv-observation-dock {
+  position: fixed;
+  z-index: 40;
+  inset-inline-start: 50%;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: minmax(225px, auto) auto minmax(140px, 1fr);
+  align-items: center;
+  gap: 16px;
+  width: min(760px, calc(100% - 32px));
+  box-sizing: border-box;
+  padding: 10px 16px 10px 10px;
+  border: 1px solid var(--sv-border, rgba(255, 255, 255, .17));
+  border-radius: 22px;
+  background: var(--sv-glass, rgba(26, 28, 32, .88));
+  color: var(--sv-ink, #f0f1f3);
+  box-shadow: var(--sv-shadow, 0 12px 40px rgba(0, 0, 0, .22));
+  backdrop-filter: blur(26px) saturate(.65);
+  -webkit-backdrop-filter: blur(26px) saturate(.65);
+  font-family: 'Barlow', sans-serif;
+}
+
+.sv-observation-dock .sv-observation-dock__date {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 18px;
+  gap: 2px 8px;
+  align-items: center;
+  min-width: 0;
+  min-height: 52px;
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 12px;
+  text-align: left;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.sv-observation-dock__eyebrow {
+  color: var(--sv-muted, #a6a9b0);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.sv-observation-dock__date-value {
+  grid-column: 1;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.sv-observation-dock__date > svg {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.sv-observation-dock__transport {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.sv-observation-dock__speed { display: grid; gap: 2px; margin-left: 4px; }
+.sv-observation-dock__speed-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.sv-observation-dock__speed select { min-height: 44px; width: 58px; padding: 0 4px; color: var(--sv-ink); background: var(--sv-input); border: 1px solid var(--sv-border); border-radius: 12px; font: 12px 'IBM Plex Mono', monospace; }
+.sv-observation-dock__speed select:disabled { opacity: .4; }
+
+.sv-observation-dock .sv-observation-dock__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sv-observation-dock .sv-observation-dock__play {
+  border: 1px solid var(--sv-border, rgba(255, 255, 255, .17));
+  background: var(--sv-input, rgba(255, 255, 255, .05));
+}
+
+.sv-observation-dock button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.sv-observation-dock button:hover:not(:disabled) {
+  background: var(--sv-input, rgba(255, 255, 255, .05));
+}
+
+/* Keep transport feedback quiet, including within the app's shimmer styles. */
+.sv-observation-dock button::after { display: none; }
+.sv-observation-dock :focus-visible {
+  outline: 2px solid var(--sv-ink, #f0f1f3);
+  outline-offset: 3px;
+}
+
+.sv-observation-dock__timeline {
+  display: grid;
+  min-width: 0;
+  gap: 0;
+}
+
+.sv-observation-dock__timeline input[type='range'] {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--sv-ink, #f0f1f3);
+  cursor: pointer;
+}
+
+.sv-observation-dock__timeline input:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.sv-observation-dock__sampling {
+  margin-top: -6px;
+  color: var(--sv-muted, #a6a9b0);
+  font: 10px/1.4 'IBM Plex Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* A native dialog owns the top layer: its own dock remains inside that layer. */
+dialog .sv-observation-dock { z-index: 4; }
+
+@media (max-width: 700px) {
+  .sv-observation-dock {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 8px;
+    width: min(480px, calc(100% - 24px));
+    padding: 8px 10px 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
+    border-radius: 20px;
+  }
+  .sv-observation-dock__timeline {
+    grid-column: 1 / -1;
+    padding: 0 8px;
+  }
+  .sv-observation-dock .sv-observation-dock__date { padding-inline: 6px; }
+  .sv-observation-dock__date-value { font-size: 12px; }
+}
+
+@media (max-width: 359px) {
+  .sv-observation-dock { grid-template-columns: minmax(0, 1fr); column-gap: 0; padding-block: 6px; }
+  .sv-observation-dock__transport { justify-content: center; }
+  .sv-observation-dock .sv-observation-dock__date { min-height: 44px; }
+  .sv-observation-dock__timeline input[type='range'] { height: 32px; }
+  .sv-observation-dock__transport { gap: 0; }
+  .sv-observation-dock__date-value { font-size: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sv-observation-dock button { transition: none; animation: none; }
+}

@@ -1,0 +1,23 @@
+.sv-github-link {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 44px; padding: 0 13px; border-radius: 15px;
+  color: var(--sv-text, #eef3f8); text-decoration: none; font: inherit; font-size: 12px; font-weight: 600;
+  background: linear-gradient(125deg, rgba(255,255,255,.16), rgba(255,255,255,.035));
+  border: 1px solid rgba(160,190,210,.34);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 2px 12px rgba(100,190,230,.09);
+  transition: border-color .2s, box-shadow .2s;
+}
+.sv-github-link::before {
+  content: ''; position: absolute; inset: -30% auto -30% -70%; width: 45%; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(170,225,255,.35), transparent);
+  transform: skewX(-18deg); animation: sv-github-sweep 6s ease-in-out infinite; z-index: -1;
+}
+.sv-github-link:hover { border-color: rgba(140,210,245,.75); box-shadow: 0 0 18px rgba(100,190,230,.2); }
+.sv-github-link:focus-visible { outline: 2px solid #58b7e6; outline-offset: 4px; }
+.sv-github-arrow { opacity: .65; }
+[data-theme="light"] .sv-github-link { color: #172d40; background: rgba(255,255,255,.62); border-color: rgba(40,80,110,.28); }
+@keyframes sv-github-sweep { 0%, 40% { left: -70%; } 80%, 100% { left: 140%; } }
+@media (max-width: 560px) { .sv-github-link { padding: 0 10px; } .sv-github-link span { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sv-github-link::before { animation: none; display: none; } .sv-github-link { transition: none; } }
